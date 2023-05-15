@@ -83,11 +83,13 @@ const DisplayController =(() => {
       square.addEventListener('click', () => {
         if (Gameboard.getCurrentRound() % 2 !== 0) {
           square.textContent = player1.mark;
+          square.disabled = true;
           Gameboard.addMove(index, player1.mark);
           updateGameStatus(`${player1.name}'s turn! Round: ${Gameboard.getCurrentRound()}`);
           Gameboard.getWinner();
         } else {
           square.textContent = player2.mark;
+          square.disabled = true;
           Gameboard.addMove(index, player2.mark);
           updateGameStatus(`${player2.name}'s turn! Round: ${Gameboard.getCurrentRound()}`);
           Gameboard.getWinner();
@@ -106,6 +108,7 @@ const DisplayController =(() => {
       Gameboard.resetCurrentRound();
       status.textContent = "Let's Play Tic-Tac-Toe! You make the first move...";
       squares.forEach(square => {
+        square.disabled = false;
         square.textContent = '';
       })
     })
